@@ -31,10 +31,18 @@ class Date(Resource):
     def get(self, date):
         data = pd.read_csv('says.csv')
         data = data.to_dict('records')
+        
+        matching_entries = []
         for entry in data:
+            # Karşılaştırma yaparken tür uyumsuzluğu önlemek için str() kullan
             if entry['date'] == date:
-                return {'data': entry}, 200
-        return {'message': 'Girilen tarihte bir soz bulunamadi !'}, 404
+                matching_entries.append(entry)
+        
+        if matching_entries:
+            return {'data': matching_entries}, 200
+        else:
+            return {'message': 'Girilen tarihte bir soz bulunamadi !'}, 404
+
 
 # Add URL endpoints
 api.add_resource(Says, '/says')
