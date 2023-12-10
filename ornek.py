@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 api = Api(app)
 
-class Users(Resource):
+class Says(Resource):
     def get(self):
         data = pd.read_csv('says.csv')
         data = data.to_dict('records')
@@ -27,7 +27,7 @@ class Users(Resource):
         data.to_csv('users.csv', index=False)
         return {'data' : new_data.to_dict('records')}, 200
 
-class Name(Resource):
+class Date(Resource):
     def get(self,date):
         data = pd.read_csv('')
         data = data.to_dict('records')
