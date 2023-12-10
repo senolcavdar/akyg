@@ -5,31 +5,31 @@ import pandas as pd
 app = Flask(__name__)
 api = Api(app)
 
-class Says(Resource):
+class Quotes(Resource):
     def get(self):
-        data = pd.read_csv('says.csv')
+        data = pd.read_csv('quotes.csv')
         data = data.to_dict('records')
         return {'data' : data}, 200
 
     def post(self):
         date = request.args['date']
-        says = request.args['says']
-        topic = request.args['topic']
+        quotes = request.args['quotes']
+        theme = request.args['theme']
 
-        data = pd.read_csv('says.csv')
+        data = pd.read_csv('quotes.csv')
 
         new_data = pd.DataFrame({
             'date': [date],
-            'says': [says],
-            'topic': [topic]
+            'quotes': [quotes],
+            'theme': [theme]
         })
         data = data.append(new_data, ignore_index=True)
-        data.to_csv('says.csv', index=False)
+        data.to_csv('quotes.csv', index=False)
         return {'data': new_data.to_dict('records')}, 200
 
 class Date(Resource):
     def get(self, date):
-        data = pd.read_csv('says.csv')
+        data = pd.read_csv('quotes.csv')
         data = data.to_dict('records')
         
         matching_entries = []
@@ -45,7 +45,7 @@ class Date(Resource):
 
 
 # Add URL endpoints
-api.add_resource(Says, '/says')
+api.add_resource(Quotes, '/quotes')
 api.add_resource(Date, '/date/<int:date>')
 
 if __name__ == '__main__':
