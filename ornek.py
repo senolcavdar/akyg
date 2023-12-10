@@ -41,6 +41,6 @@ api.add_resource(Says, '/says')
 api.add_resource(Date, '/<string:date>')
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=6767)
+    #app.run(host="127.0.0.1", port=6767)
     app.run()
 
