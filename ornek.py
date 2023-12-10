@@ -38,7 +38,7 @@ class Date(Resource):
 
 # Add URL endpoints
 api.add_resource(Says, '/says')
-api.add_resource(Date, '/<string:date>')
+api.add_resource(Date, '/date/<string:date>')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=6767)
