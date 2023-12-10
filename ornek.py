@@ -34,7 +34,7 @@ class Date(Resource):
         for entry in data:
             if entry['date'] == date:
                 return {'data': entry}, 200
-        return {'message': 'Girilen tarihte bir soz bulunamadı !'}, 404
+        return {'message': 'Girilen tarihte bir soz bulunamadi !'}, 404
 
 # Add URL endpoints
 api.add_resource(Says, '/says')
