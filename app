@@ -12,3 +12,5 @@ location /static  {
     root /opt/akyg/;
   }
 }
+
+#1
