@@ -1,0 +1,22 @@
+# pull official base image
+FROM python:3.11.3-slim-buster
+
+# set work directory
+WORKDIR /usr/src/app
+
+# install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
+#RUN apt-get -y update 
+#RUN apt-get install -y gunicorn  
+
+# copy project
+COPY ./src ./src
+
+WORKDIR /usr/src/app/src
+EXPOSE 8000
+ENTRYPOINT  gunicorn -b 0.0.0.0:8000 --workers 1 uygulama:app
+
+
+
